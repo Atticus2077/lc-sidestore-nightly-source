@@ -1,0 +1,10 @@
+{
+  "name": "LC+SS Nightly (Atticus2077)",
+  "identifier": "com.atticus2077.lcssnightly",
+  "website": "https://github.com/LiveContainer/LiveContainer",
+  "subtitle": "LiveContainer + SideStore official nightly mirror",
+  "description": "Tracks the official LiveContainer+SideStore nightly and assigns a unique buildVersion so SideStore can detect same-version nightly updates.",
+  "tintColor": "#0784FC",
+  "iconURL": "https://raw.githubusercontent.com/LiveContainer/LiveContainer/main/screenshots/AppIcon1024.png",
+  "apps": []
+}
