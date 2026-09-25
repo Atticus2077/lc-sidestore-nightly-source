@@ -6,5 +6,35 @@
   "description": "Tracks the official LiveContainer+SideStore nightly and assigns a unique buildVersion so SideStore can detect same-version nightly updates.",
   "tintColor": "#0784FC",
   "iconURL": "https://raw.githubusercontent.com/LiveContainer/LiveContainer/main/screenshots/AppIcon1024.png",
-  "apps": []
+  "apps": [
+    {
+      "name": "LiveContainer + SideStore (Nightly)",
+      "bundleIdentifier": "com.kdt.livecontainer",
+      "developerName": "LiveContainer Team",
+      "subtitle": "Official LC+SS nightly, update-detectable mirror",
+      "localizedDescription": "Mirrors the official LiveContainer+SideStore nightly. The executable code is unchanged; only CFBundleVersion is made unique per upstream nightly asset so SideStore can offer updates.",
+      "iconURL": "https://raw.githubusercontent.com/LiveContainer/LiveContainer/main/screenshots/AppIcon1024.png",
+      "tintColor": "#0784FC",
+      "category": "utilities",
+      "version": "3.8.10",
+      "buildVersion": "20260918231311",
+      "versionDate": "2026-09-18T23:13:11Z",
+      "versionDescription": "Official LC+SS nightly mirror of LiveContainer/LiveContainer commit 4dbe0f9. Only CFBundleVersion was changed to 20260918231311 so SideStore can detect nightly updates. Upstream SHA-256: bec41bc21d75a0f2e85a0aa589ce5772e24e410deb017486758a3bc0503c8de7.",
+      "downloadURL": "https://github.com/Atticus2077/lc-sidestore-nightly-source/releases/download/nightly-4dbe0f9-20260918231311/LiveContainer%2BSideStore.ipa",
+      "size": 35940421,
+      "versions": [
+        {
+          "version": "3.8.10",
+          "buildVersion": "20260918231311",
+          "date": "2026-09-18T23:13:11Z",
+          "localizedDescription": "Official LC+SS nightly mirror of LiveContainer/LiveContainer commit 4dbe0f9. Only CFBundleVersion was changed to 20260918231311 so SideStore can detect nightly updates. Upstream SHA-256: bec41bc21d75a0f2e85a0aa589ce5772e24e410deb017486758a3bc0503c8de7.",
+          "downloadURL": "https://github.com/Atticus2077/lc-sidestore-nightly-source/releases/download/nightly-4dbe0f9-20260918231311/LiveContainer%2BSideStore.ipa",
+          "size": 35940421,
+          "sha256": "2fb39f5e30dc6715b4430f9f2d874cab23c4dafed6d344645025b525bd4ffc1d",
+          "minOSVersion": "15.0"
+        }
+      ]
+    }
+  ],
+  "news": []
 }
