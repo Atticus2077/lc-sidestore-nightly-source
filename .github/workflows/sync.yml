@@ -1,0 +1,101 @@
+name: Sync LC+SS Nightly
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync.yml'
+      - 'scripts/sync.py'
+      - 'source.json'
+      - 'state.json'
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-lcss-nightly
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Sync official nightly
+        id: sync
+        run: |
+          set -euo pipefail
+          python3 scripts/sync.py | tee /tmp/sync.log
+          if grep -qx 'changed=false' /tmp/sync.log; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+            python3 - <<'PY'
+          import json, os
+          m=json.load(open('dist/meta.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              for k,v in m.items():
+                  f.write(f"{k}={v}\n")
+          PY
+          fi
+
+      - name: Publish immutable release
+        if: steps.sync.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.sync.outputs.release_tag }}
+          COMMIT: ${{ steps.sync.outputs.short_commit }}
+          BUILD: ${{ steps.sync.outputs.build_version }}
+          UPSTREAM_SHA: ${{ steps.sync.outputs.upstream_sha256 }}
+          PATCHED_SHA: ${{ steps.sync.outputs.patched_sha256 }}
+        run: |
+          set -euo pipefail
+          body=$(cat <<EOF
+          Mirror of the official LiveContainer + SideStore nightly.
+
+          - Upstream commit: ${COMMIT}
+          - Source: https://github.com/LiveContainer/LiveContainer/releases/tag/nightly
+          - Upstream IPA SHA-256: ${UPSTREAM_SHA}
+          - Mirrored IPA SHA-256: ${PATCHED_SHA}
+          - Local buildVersion: ${BUILD}
+
+          The executable code is unchanged. Only CFBundleVersion metadata in the containing app/app extensions is changed so SideStore can distinguish consecutive upstream nightlies that reuse the same upstream version number.
+          EOF
+          )
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" 'dist/LiveContainer+SideStore.ipa' --clobber
+            gh release edit "$TAG" --title "LC+SS Nightly ${COMMIT} (${BUILD})" --notes "$body"
+          else
+            gh release create "$TAG" 'dist/LiveContainer+SideStore.ipa' \
+              --title "LC+SS Nightly ${COMMIT} (${BUILD})" \
+              --notes "$body"
+          fi
+
+      - name: Commit source metadata
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source.json state.json
+          git commit -m "sync: LC+SS nightly ${{ steps.sync.outputs.short_commit }}"
+          git push
+
+      - name: Prune old mirror releases
+        if: steps.sync.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mapfile -t tags < <(gh api "repos/${GITHUB_REPOSITORY}/releases?per_page=100" --jq '.[] | select(.tag_name | startswith("nightly-")) | .tag_name')
+          if ((${#tags[@]} > 8)); then
+            for tag in "${tags[@]:8}"; do
+              gh release delete "$tag" --yes --cleanup-tag || true
+            done
+          fi
