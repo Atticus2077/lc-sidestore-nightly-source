@@ -2,14 +2,14 @@
   "upstream": "LiveContainer/LiveContainer",
   "tag": "nightly",
   "asset": "LiveContainer+SideStore.ipa",
-  "lastFingerprint": "b7cfda60c39933a94d616f2a358ac2e48fd4e5cd:751209426:2026-11-15T14:10:11Z:23754976",
-  "upstreamCommit": "b7cfda60c39933a94d616f2a358ac2e48fd4e5cd",
-  "upstreamAssetId": 751209426,
-  "upstreamAssetUpdatedAt": "2026-11-15T14:10:11Z",
-  "upstreamSHA256": "ec46cc3596e9fb96eff8ea7f47d0daef0d5adfe2d3dfea101a9a633997e79444",
-  "patchedSHA256": "3077a3f8e47620617e66773246668ae73566627073b64eb730012de4ad2cb1fa",
+  "lastFingerprint": "b0f53e8934df325970e9b6ff52932a43b585c424:772251347:2026-11-20T15:07:24Z:23997201",
+  "upstreamCommit": "b0f53e8934df325970e9b6ff52932a43b585c424",
+  "upstreamAssetId": 772251347,
+  "upstreamAssetUpdatedAt": "2026-11-20T15:07:24Z",
+  "upstreamSHA256": "d520ae1003f21afa1c38004dfd760b1b305b4df4b63ff54fb6859e836a6f5088",
+  "patchedSHA256": "b6378a04d493756d8704200ad4b3d28b0a583d3c1768956cea773f274e75997c",
   "marketingVersion": "3.8.14",
-  "buildVersion": "20261115141011",
-  "releaseTag": "nightly-b7cfda6-20261115141011",
-  "size": 23754483
+  "buildVersion": "20261120150724",
+  "releaseTag": "nightly-b0f53e8-20261120150724",
+  "size": 23994804
 }

@@ -17,12 +17,22 @@
       "tintColor": "#0784FC",
       "category": "utilities",
       "version": "3.8.14",
-      "buildVersion": "20261115141011",
-      "versionDate": "2026-11-15T14:10:11Z",
-      "versionDescription": "Official LC+SS nightly mirror of LiveContainer/LiveContainer commit b7cfda6. Only CFBundleVersion was changed to 20261115141011 so SideStore can detect nightly updates. Upstream SHA-256: ec46cc3596e9fb96eff8ea7f47d0daef0d5adfe2d3dfea101a9a633997e79444.",
-      "downloadURL": "https://github.com/Atticus2077/lc-sidestore-nightly-source/releases/download/nightly-b7cfda6-20261115141011/LiveContainer%2BSideStore.ipa",
-      "size": 23754483,
+      "buildVersion": "20261120150724",
+      "versionDate": "2026-11-20T15:07:24Z",
+      "versionDescription": "Official LC+SS nightly mirror of LiveContainer/LiveContainer commit b0f53e8. Only CFBundleVersion was changed to 20261120150724 so SideStore can detect nightly updates. Upstream SHA-256: d520ae1003f21afa1c38004dfd760b1b305b4df4b63ff54fb6859e836a6f5088.",
+      "downloadURL": "https://github.com/Atticus2077/lc-sidestore-nightly-source/releases/download/nightly-b0f53e8-20261120150724/LiveContainer%2BSideStore.ipa",
+      "size": 23994804,
       "versions": [
+        {
+          "version": "3.8.14",
+          "buildVersion": "20261120150724",
+          "date": "2026-11-20T15:07:24Z",
+          "localizedDescription": "Official LC+SS nightly mirror of LiveContainer/LiveContainer commit b0f53e8. Only CFBundleVersion was changed to 20261120150724 so SideStore can detect nightly updates. Upstream SHA-256: d520ae1003f21afa1c38004dfd760b1b305b4df4b63ff54fb6859e836a6f5088.",
+          "downloadURL": "https://github.com/Atticus2077/lc-sidestore-nightly-source/releases/download/nightly-b0f53e8-20261120150724/LiveContainer%2BSideStore.ipa",
+          "size": 23994804,
+          "sha256": "b6378a04d493756d8704200ad4b3d28b0a583d3c1768956cea773f274e75997c",
+          "minOSVersion": "15.0"
+        },
         {
           "version": "3.8.14",
           "buildVersion": "20261115141011",
